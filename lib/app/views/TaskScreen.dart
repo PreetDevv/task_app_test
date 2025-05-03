@@ -71,10 +71,11 @@ class TaskScreen extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
+            isScrollControlled: true,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
-            builder: (_) => _buildBottomSheet(controller),
+            builder: (_) => _buildBottomSheet(controller, context),
           );
         },
         backgroundColor: Colors.indigo,
@@ -83,10 +84,10 @@ class TaskScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomSheet(TaskController controller) {
+  Widget _buildBottomSheet(TaskController controller,  BuildContext context) {
     final TextEditingController textController = TextEditingController();
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20 + MediaQuery.of(context).viewInsets.bottom),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
